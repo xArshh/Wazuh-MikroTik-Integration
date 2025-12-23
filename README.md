@@ -8,7 +8,7 @@ The goal of this project is to give Wazuh clear visibility into critical MikroTi
 
 **The following MikroTik events are currently covered by decoders in this repository:**
 
-### 🔐 Authentication & User Activity
+###  Authentication & User Activity
 - Successful user login
 - Failed login attempts
 - User logout events
@@ -16,20 +16,20 @@ The goal of this project is to give Wazuh clear visibility into critical MikroTi
 - User password changes
 - User add/change operations
 
-### 🛠️ System & Configuration Changes
+###  System & Configuration Changes
 - System identity changes
 - System time changes
 - System Timezone changes
 - IP service configuration changes
 - DNS configuration changes
 
-### 🔥 Firewall Changes
+###  Firewall Changes
 - IPv4 filter rule add/change
 - IPv4 filter rule removal
 - IPv6 filter rule add/change
 - IPv6 filter rule removal
 
-### 📜 Script Activity
+###  Script Activity
 - Script creation
 - Script removal
 
