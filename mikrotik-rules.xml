@@ -31,7 +31,7 @@
 
         <rule id="101007" level="12">
                 <decoded_as>MikroTik-Failed-User-Login</decoded_as>
-                <description>Login failure for user $(username) from $(srcip)</description>
+                <description>Login failure for user $(username) from $(srcip) via $(method)</description>
         </rule>
 
         <rule id="101008" level="8">
@@ -95,3 +95,4 @@
         </rule>
 
 </group>
+
