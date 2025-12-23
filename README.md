@@ -102,7 +102,10 @@ Configure MikroTik to forward logs to the Wazuh syslog server:
 ```
 
 ```
-/system logging add action=WazuhTest topics=ppp,info,error,system
+/system logging add action=WazuhTest topics=info
+/system logging add action=WazuhTest topics=ppp
+/system logging add action=WazuhTest topics=error
+/system logging add action=WazuhTest topics=system
 ```
 
 ❗**Note #1: You can choose any name for the first command, but make sure to use the same name as the action in the second command**
