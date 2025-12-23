@@ -38,8 +38,8 @@
 
 <decoder name="MikroTik-Failed-User-Login">
         <prematch type="pcre2">login failure</prematch>
-        <regex type="pcre2">login failure for user (\S+) from (\S+)</regex>
-        <order>username, srcip</order>
+        <regex type="pcre2">login failure for user (\S+) from (\S+) via (\S+)</regex>
+        <order>username, srcip, method</order>
 </decoder>
 
 <decoder name="MikroTik-Successful-User-Login">
@@ -115,4 +115,5 @@
         <regex type="pcre2">^script removed by winbox-[^/]+/tcp-msg\(winbox\):(\S+)@([0-9\.]+)</regex>
         <order>admin_user, srcip</order>
 </decoder>
+
              
