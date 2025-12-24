@@ -94,5 +94,22 @@
                 <description>MikroTik script removed by $(admin_user) from $(srcip)</description>
         </rule>
 
+		<rule id="101020" level="10">
+                <decoded_as>MikroTik-Special-Login-Added</decoded_as>
+                <description>MikroTik special-login added by $(admin_user) from $(srcip) (target=$(target_user), special_port=$(special_port), disabled=$(disabled))</description>
+        </rule>
+
+        <rule id="101021" level="10">
+                <decoded_as>MikroTik-Special-Login-Changed</decoded_as>
+                <description>MikroTik special-login changed by $(admin_user) from $(srcip) (target=$(target_user), special_port=$(special_port), disabled=$(disabled))</description>
+        </rule>
+
+        <rule id="101022" level="12">
+                <decoded_as>MikroTik-Special-Login-Removed</decoded_as>
+                <description>MikroTik special-login removed by $(admin_user) from $(srcip)</description>
+        </rule>
+
+
 </group>
+
 
