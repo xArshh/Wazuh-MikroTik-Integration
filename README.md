@@ -15,6 +15,7 @@ The goal of this project is to give Wazuh clear visibility into critical MikroTi
 - VPN login, logout, and authentication failures
 - User password changes
 - User add/change operations
+- Mikrotik special-login events
 
 ###  System & Configuration Changes
 - System identity changes
