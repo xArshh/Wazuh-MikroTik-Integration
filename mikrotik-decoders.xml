@@ -116,4 +116,22 @@
         <order>admin_user, srcip</order>
 </decoder>
 
-             
+<decoder name="MikroTik-Special-Login-Added">
+        <prematch type="pcre2">^added special-login</prematch>
+        <regex type="pcre2">^added special-login .* by [^:]+:(\S+)@([0-9\.]+).*disabled=(yes|no).*port=([^\s]+).*user=([^\s\)]+)</regex>
+        <order>admin_user, srcip, disabled, special_port, target_user</order>
+</decoder>
+
+<decoder name="MikroTik-Special-Login-Changed">
+        <prematch type="pcre2">^changed special-login</prematch>
+        <regex type="pcre2">^changed special-login .* by [^:]+:(\S+)@([0-9\.]+).*disabled=(yes|no).*port=([^\s]+).*user=([^\s\)]+)</regex>
+        <order>admin_user, srcip, disabled, special_port, target_user</order>
+</decoder>
+
+<decoder name="MikroTik-Special-Login-Removed">
+        <prematch type="pcre2">^removed special-login</prematch>
+        <regex type="pcre2">^removed special-login .* by [^:]+:(\S+)@([0-9\.]+)</regex>
+        <order>admin_user, srcip</order>
+</decoder>
+
+
