@@ -80,6 +80,11 @@
                 <description>MikroTik IP service $(changed_service) changed by $(admin_user) via $(method) from $(srcip)</description>
         </rule>
 
+		<rule id="101017" level="7">
+                <decoded_as>MikroTik-DNS-Change-Web-Winbox</decoded_as>
+                <description>MikroTik DNS configuration changed by $(admin_user) via $(method) - remote-requests:$(allow_remote_requests) servers:$(dns_servers) doh-server:$(doh_server)</description>
+        </rule>
+
 
         <rule id="101018" level="15">
                 <decoded_as>MikroTik-Script-Added</decoded_as>
