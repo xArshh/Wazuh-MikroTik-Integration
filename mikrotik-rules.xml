@@ -88,13 +88,13 @@
 		<rule id="101018" level="7">
                 <decoded_as>MikroTik-DNS-Change-ssh</decoded_as>
                 <description>MikroTik DNS configuration changed by $(admin_user) via $(method) - remote-requests: $(allow_remote_requests),dns-servers: $(dns_servers),doh-server: $(doh_server)</description>
-
         </rule>
 
-        <rule id="101019" level="15">
+        <rule id="101019" level="13">
                 <decoded_as>MikroTik-Script-Added</decoded_as>
-                <description>MikroTik new script "$(script_name)" added by "$(username)" via $(method) from $(srcip) (source="$(source)")</description>
+                <description>MikroTik script added by $(admin_user) via $(method) from $(srcip) script name: $(script_name) source code: $(source_code)</description>
         </rule>
+
 
         <rule id="101020" level="13">
                 <decoded_as>MikroTik-Script-Removed</decoded_as>
