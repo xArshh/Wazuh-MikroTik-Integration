@@ -1,7 +1,7 @@
 <group name="mikrotik">
         <rule id="101001" level="14">
                 <decoded_as>MikroTik-Identity-Change</decoded_as>
-                <description>MikroTik system identity changed by $(username) via $(method) from $(srcip) to $(new_identity)</description>
+                <description>MikroTik system identity changed by $(admin_user) via $(method) from $(srcip) to $(new_identity)</description>
         </rule>
 
         <rule id="101002" level="12">
@@ -9,9 +9,9 @@
                 <description>MikroTik system time changed from $(old_time) to $(new_time)</description>
         </rule>
 
-        <rule id="101003" level="13">
-                <decoded_as>MikroTik-Timezone-Change</decoded_as>
-                <description>MikroTik system timezone changed to $(timezone) by $(username) via $(method) from $(srcip)</description>
+        <rule id="101003" level="8">
+                <decoded_as>MikroTik-TimeZone-Change</decoded_as>
+                <description>MikroTik time zone changed to $(time_zone) by $(admin_user) via $(method)</description>
         </rule>
 
         <rule id="101004" level="10">
@@ -36,53 +36,50 @@
 
         <rule id="101008" level="8">
                 <decoded_as>MikroTik-Successful-User-Login</decoded_as>
-                <description>User $(username) logged in from $(srcip) via $(method)</description>
+                <description>User $(admin_user) logged in from $(srcip) via $(method)</description>
         </rule>
 
         <rule id="101009" level="6">
                 <decoded_as>MikroTik-User-Logout</decoded_as>
-                <description>User $(username) logged out from $(srcip) via $(method)</description>
+                <description>User $(admin_user) logged out from $(srcip) via $(method)</description>
         </rule>
 		
-        <rule id="101010" level="12">
-                <decoded_as>MikroTik-User-Change</decoded_as>
-                <description>MikroTik user $(target_user) $(action) by $(admin_user) via $(method) from $(srcip) (group=$(group), disabled=$(disabled))</description>
+        <rule id="101010" level="9">
+                <decoded_as>MikroTik-User-Modify</decoded_as>
+                <description>MikroTik user $(target_user) $(action) by $(admin_user) via $(method) from $(srcip) (group=$(group))</description>
         </rule>
 
         <rule id="101011" level="14">
                 <decoded_as>MikroTik-User-Password-Change</decoded_as>
-                <description>MikroTik user $(target_user) password changed by $(username)</description>
+                <description>MikroTik user $(target_user) password changed by $(admin_user)</description>
         </rule>
 
-        <rule id="101012" level="12">
-                <decoded_as>MikroTik-IPv4-Filter-Rule-Change</decoded_as>
-                <description>MikroTik firewall filter rule $(event_action) by $(username) via $(method) from $(srcip) (action=$(fw_action), chain=$(chain), disabled=$(disabled))</description>
+         <rule id="101012" level="8">
+                <decoded_as>MikroTik-IPv4-Filter-Rule-Modify</decoded_as>
+                <description>MikroTik firewall rule $(event_action) | action=$(fw_action) | user=$(admin_user) | srcip=$(srcip)$(chain:+ | chain=$(chain))</description>
         </rule>
 
         <rule id="101013" level="13">
                 <decoded_as>MikroTik-IPv4-Filter-Rule-Removed</decoded_as>
-                <description>MikroTik firewall filter rule removed by $(username) via $(method) from $(srcip)</description>
+                <description>MikroTik firewall filter rule removed by $(admin_user) via $(method) from $(srcip)</description>
         </rule>
 
-        <rule id="101014" level="12">
-                <decoded_as>MikroTik-IPv6-Filter-Rule-Change</decoded_as>
-                <description>MikroTik IPv6 firewall filter rule $(event_action) by $(username) via $(method) from $(srcip) (action=$(fw_action), chain=$(chain), disabled=$(disabled))</description>
+        <rule id="101014" level="8">
+                <decoded_as>MikroTik-IPv6-Filter-Rule-Modify</decoded_as>
+                <description>MikroTik IPv6 firewall rule $(event_action) | action=$(fw_action) | user=$(admin_user) | srcip=$(srcip)$(chain:+ | chain=$(chain))</description>
         </rule>
 
         <rule id="101015" level="13">
                 <decoded_as>MikroTik-IPv6-Filter-Rule-Removed</decoded_as>
-                <description>MikroTik IPv6 firewall filter rule removed by $(username) via $(method) from $(srcip)</description>
+                <description>MikroTik IPv6 firewall filter rule removed by $(admin_user) via $(method) from $(srcip)</description>
         </rule>
+
 
         <rule id="101016" level="10">
                 <decoded_as>MikroTik-IP-Service-Change</decoded_as>
-                <description>MikroTik IP service "$(service)" $(disabled) by "$(username)" via $(method) from $(srcip)</description>
+                <description>MikroTik IP service $(changed_service) changed by $(admin_user) via $(method) from $(srcip)</description>
         </rule>
 
-        <rule id="101017" level="12">
-                <decoded_as>MikroTik-DNS-Change</decoded_as>
-                <description>DNS configuration changed by $(admin_user) via $(method) from $(srcip) (allow-remote=$(allow_remote), max-udp=$(max_udp_size), servers=$(servers), vrf=$(vrf))</description>
-        </rule>
 
         <rule id="101018" level="15">
                 <decoded_as>MikroTik-Script-Added</decoded_as>
