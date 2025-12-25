@@ -1,7 +1,7 @@
 <decoder name="MikroTik-Identity-Change">
         <prematch type="pcre2">^system identity changed by</prematch>
-        <regex type="pcre2">^system identity changed by\s+(.+?):(\S+)@([0-9\.]+)\s+\(\/system identity set name=([^)]+)\)</regex>
-        <order>method, username, srcip, new_identity</order>
+        <regex type="pcre2">^system identity changed by\s+(.+?):(\S+)@(\S+)\s+\(\/system identity set name="?([^"]+)"?\)$</regex>
+        <order>method, admin_user, srcip, new_identity</order>
 </decoder>
 
 
@@ -12,10 +12,10 @@
 </decoder>
 
 
-<decoder name="MikroTik-Timezone-Change">
-        <prematch type="pcre2">^system time zone settings changed by</prematch>
-        <regex type="pcre2">^system time zone settings changed by\s+(.+?):(\S+)@([0-9\.]+).*time-zone-name=([^;\s]+)</regex>
-        <order>method, username, srcip, timezone</order>
+<decoder name="MikroTik-TimeZone-Change">
+    <prematch type="pcre2">^system time zone settings changed by</prematch>
+    <regex type="pcre2">^system time zone settings changed by\s+(.+):(\S+)@(\S+).*time-zone-name=([^;\s\)]+)</regex>
+    <order>method, admin_user, srcip, time_zone</order>
 </decoder>
 
 <decoder name="MikroTik-VPN-Login">
@@ -32,7 +32,7 @@
 
 <decoder name="MikroTik-VPN-Logout">
         <prematch type="pcre2">logged out,</prematch>
-        <regex type="pcre2">^(\S+)\s+logged out,.*from\s+([0-9\.]+)$</regex>
+        <regex type="pcre2">^(\S+)\s+logged out,.*from\s+(\S+)$</regex>
         <order>username, srcip</order>
 </decoder>
 
@@ -45,44 +45,19 @@
 <decoder name="MikroTik-Successful-User-Login">
         <prematch type="pcre2">logged in from</prematch>
         <regex type="pcre2">user (\S+) logged in from (\S+) via (\S+)</regex>
-        <order>username, srcip, method</order>
+        <order>admin_user, srcip, method</order>
 </decoder>
 
 <decoder name="MikroTik-User-Logout">
         <prematch type="pcre2">logged out from</prematch>
         <regex type="pcre2">user (\S+) logged out from (\S+) via (\S+)</regex>
-        <order>username, srcip, method</order>
+        <order>admin_user, srcip, method</order>
 </decoder>
 
-<decoder name="MikroTik-User-Change">
-        <prematch type="pcre2">^user\s+\S+\s+(added|changed)\s+by\s+</prematch>
-        <regex type="pcre2">^user\s+(\S+)\s+(added|changed)\s+by\s+([^:/\s]+)(?:-[^/]+)?/tcp-msg\(winbox\):(\S+)@([0-9\.]+).*disabled=(yes|no).*group=([a-zA-Z]+)</regex>
-        <order>target_user, action, method, admin_user, srcip, disabled, group</order>
-</decoder>
-
-<decoder name="MikroTik-IPv4-Filter-Rule-Change">
-        <prematch type="pcre2">^filter rule\s+(added|changed)\s+by\s+</prematch>
-        <regex type="pcre2">^filter rule\s+(added|changed)\s+by\s+([^:/\s]+)(?:-[^/]+)?/tcp-msg\(winbox\):(\S+)@([0-9\.]+).*action=([a-zA-Z]+).*chain=([a-zA-Z]+).*disabled=(yes|no)</regex>
-        <order>event_action, method, username, srcip, fw_action, chain, disabled</order>
-</decoder>
-
-<decoder name="MikroTik-IPv4-Filter-Rule-Removed">
-        <prematch type="pcre2">^filter rule\s+removed\s+by\s+</prematch>
-        <regex type="pcre2">^filter rule\s+removed\s+by\s+([^:/\s]+)(?:-[^/]+)?/tcp-msg\(winbox\):(\S+)@([0-9\.]+)</regex>
-        <order>method, username, srcip</order>
-</decoder>
-
-
-<decoder name="MikroTik-IPv6-Filter-Rule-Change">
-        <prematch type="pcre2">^filter6 rule\s+(added|changed)\s+by\s+</prematch>
-        <regex type="pcre2">^filter6 rule\s+(added|changed)\s+by\s+([^:/\s]+)(?:-[^/]+)?/tcp-msg\(winbox\):(\S+)@([0-9\.]+).*action=([a-zA-Z]+).*chain=([a-zA-Z]+).*disabled=(yes|no)</regex>
-        <order>event_action, method, username, srcip, fw_action, chain, disabled</order>
-</decoder>
-
-<decoder name="MikroTik-IPv6-Filter-Rule-Removed">
-        <prematch type="pcre2">^filter6 rule\s+removed\s+by\s+</prematch>
-        <regex type="pcre2">^filter6 rule\s+removed\s+by\s+([^:/\s]+)(?:-[^/]+)?/tcp-msg\(winbox\):(\S+)@([0-9\.]+)</regex>
-        <order>method, username, srcip</order>
+<decoder name="MikroTik-User-Modify">
+        <prematch type="pcre2">^user\s+\S+\s+(added|changed)\s+by</prematch>
+        <regex type="pcre2">^user\s+(\S+)\s+(added|changed)\s+by\s+(.+):(\S+)@([^/\s]+)(?:/action:\d+)?\s+.*group=([a-zA-Z]+)</regex>
+        <order>target_user, action, method, admin_user, srcip, group</order>
 </decoder>
 
 <decoder name="MikroTik-User-Password-Change">
@@ -91,17 +66,37 @@
         <order>target_user, admin_user</order>
 </decoder>
 
-<decoder name="MikroTik-IP-Service-Change">
-		<prematch type="pcre2">^ip service changed by</prematch>
-		<regex type="pcre2">^ip service changed by\s+\S+/tcp-msg\((\w+)\):(\S+)@([0-9.]+)\s+\(\/ip service set\s+(\S+)\s+address=("?"[^"]*"?)\s+disabled=(yes|no)\s+max-sessions=(\d+)\s+port=(\d+)\s+vrf=(\S+)\)</regex>
-		<order>method, admin_user, srcip, service, address, disabled, max_sessions, port, vrf</order>
+
+<decoder name="MikroTik-IPv4-Filter-Rule-Modify">
+        <prematch type="pcre2">^filter rule\s+(added|changed)\s+by</prematch>
+        <regex type="pcre2">^filter rule\s+(added|changed)\s+by\s+(.+):([^\s@]+)@([0-9\.]+).*?\(.*?(?:action=([a-zA-Z\-]+))?.*?(?:chain=([a-zA-Z]+))?</regex>
+        <order>event_action, method, admin_user, srcip, fw_action, chain</order>
+</decoder>
+
+<decoder name="MikroTik-IPv4-Filter-Rule-Removed">
+        <prematch type="pcre2">^filter rule\s+removed\s+by</prematch>
+        <regex type="pcre2">^filter rule\s+removed\s+by\s+(.+):([^\s@]+)@([0-9\.]+)</regex>
+        <order>method, admin_user, srcip</order>
 </decoder>
 
 
-<decoder name="MikroTik-DNS-Change">
-        <prematch type="pcre2">^dns changed by\s+</prematch>
-        <regex type="pcre2">^dns changed by\s+([^:/\s]+)(?:-[^/]+)?/tcp-msg\(winbox\):(\S+)@([0-9\.]+).*allow-remote-requests=(yes|no).*max-udp-packet-size=([0-9]+).*servers=([^ \)]+).*vrf=([a-zA-Z0-9_-]+)</regex>
-        <order>method, admin_user, srcip, allow_remote, max_udp_size, servers, vrf</order>
+<decoder name="MikroTik-IPv6-Filter-Rule-Modify">
+        <prematch type="pcre2">^filter6 rule\s+(added|changed)\s+by</prematch>
+        <regex type="pcre2">^filter6 rule\s+(added|changed)\s+by\s+(.+):([^\s@]+)@([0-9\.]+).*?\(.*?(?:action=([a-zA-Z\-]+))?.*?(?:chain=([a-zA-Z]+))?</regex>
+        <order>event_action, method, admin_user, srcip, fw_action, chain</order>
+</decoder>
+
+<decoder name="MikroTik-IPv6-Filter-Rule-Removed">
+        <prematch type="pcre2">^filter6 rule\s+removed\s+by</prematch>
+        <regex type="pcre2">^filter6 rule\s+removed\s+by\s+(.+):([^\s@]+)@([0-9\.]+)</regex>
+        <order>method, admin_user, srcip</order>
+</decoder>
+
+
+<decoder name="MikroTik-IP-Service-Change">
+        <prematch type="pcre2">^ip service changed by</prematch>
+        <regex type="pcre2">^ip service changed by\s+(.+):([^\s@]+)@([0-9\.]+).*?\(/ip service set\s+(\S+)</regex>
+        <order>method, admin_user, srcip, changed_service</order>
 </decoder>
 
 <decoder name="MikroTik-Script-Added">
