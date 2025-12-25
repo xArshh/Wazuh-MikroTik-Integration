@@ -99,6 +99,12 @@
         <order>method, admin_user, srcip, changed_service</order>
 </decoder>
 
+<decoder name="MikroTik-DNS-Change-Web-Winbox">
+    <prematch type="pcre2">^dns changed by</prematch>
+    <regex type="pcre2">^dns changed by\s+(.+):([^@:]+)@([0-9a-fA-F:.]+)\s+\(.*?allow-remote-requests=(yes|no).*?servers=([^ )]+).*?use-doh-server=([^ )]*).*?\)$</regex>
+    <order>method, admin_user, srcip, allow_remote_requests, dns_servers, doh_server</order>
+</decoder>
+
 <decoder name="MikroTik-Script-Added">
         <prematch type="pcre2">^new script added by winbox</prematch>
         <regex type="pcre2">^new script added by winbox-[^/]+/tcp-msg\(winbox\):(\S+)@([0-9\.]+)</regex>
