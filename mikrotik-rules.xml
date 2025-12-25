@@ -85,28 +85,33 @@
                 <description>MikroTik DNS configuration changed by $(admin_user) via $(method) - remote-requests:$(allow_remote_requests) servers:$(dns_servers) doh-server:$(doh_server)</description>
         </rule>
 
+		<rule id="101018" level="7">
+                <decoded_as>MikroTik-DNS-Change-ssh</decoded_as>
+                <description>MikroTik DNS configuration changed by $(admin_user) via $(method) - remote-requests: $(allow_remote_requests),dns-servers: $(dns_servers),doh-server: $(doh_server)</description>
 
-        <rule id="101018" level="15">
+        </rule>
+
+        <rule id="101019" level="15">
                 <decoded_as>MikroTik-Script-Added</decoded_as>
                 <description>MikroTik new script "$(script_name)" added by "$(username)" via $(method) from $(srcip) (source="$(source)")</description>
         </rule>
 
-        <rule id="101019" level="13">
+        <rule id="101020" level="13">
                 <decoded_as>MikroTik-Script-Removed</decoded_as>
                 <description>MikroTik script removed by $(admin_user) from $(srcip)</description>
         </rule>
 
-		<rule id="101020" level="10">
+		<rule id="101021" level="10">
                 <decoded_as>MikroTik-Special-Login-Added</decoded_as>
                 <description>MikroTik special-login added by $(admin_user) from $(srcip) (target=$(target_user), special_port=$(special_port), disabled=$(disabled))</description>
         </rule>
 
-        <rule id="101021" level="10">
+        <rule id="101022" level="10">
                 <decoded_as>MikroTik-Special-Login-Changed</decoded_as>
                 <description>MikroTik special-login changed by $(admin_user) from $(srcip) (target=$(target_user), special_port=$(special_port), disabled=$(disabled))</description>
         </rule>
 
-        <rule id="101022" level="12">
+        <rule id="101023" level="12">
                 <decoded_as>MikroTik-Special-Login-Removed</decoded_as>
                 <description>MikroTik special-login removed by $(admin_user) from $(srcip)</description>
         </rule>
