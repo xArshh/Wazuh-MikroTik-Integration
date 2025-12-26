@@ -113,6 +113,12 @@
 		<decoded_as>MikroTik-Special-Login-Removed</decoded_as>
 		<description>MikroTik special-login removed by $(admin_user) from $(srcip)</description>
 	</rule>
+	
+	<rule id="101101" level="12">
+		<decoded_as>MikroTik-Scheduler-Add-Web-Winbox</decoded_as>
+		<description>MikroTik scheduler script added by $(admin_user) from $(srcaddr) (name=$(name), disabled=$(disabled), start=$(start_date) $(start_time))</description>
+	</rule>
+
 </group>
 
 
