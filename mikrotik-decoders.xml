@@ -107,21 +107,9 @@
 </decoder>
 
 <decoder name="MikroTik-Script-Added">
-	<prematch type="pcre2">^new script added by</prematch>
-	<regex type="pcre2">^new script added by\s+(.+?):([^@:]+)@([0-9a-fA-F:.]+)\s+\(.*?/system script add.*?(?:name=("[^"]+"|\S+)).*?source="([\s\S]*?)"\)$</regex>
-	<order>method,admin_user,srcaddr,script_name,source_code</order>
-</decoder>
-
-<decoder name="MikroTik-Script-Removed">
-	<prematch type="pcre2">^script removed by</prematch>
-	<regex type="pcre2">^script removed by\s+(.+?):([^@:]+)@([0-9a-fA-F:.]+)(?:/action:\d+)?\s+\(/system script remove\b.*?\)</regex>
-	<order>method,admin_user,srcaddr</order>
-</decoder>
-
-<decoder name="MikroTik-Special-Login-Added">
-	<prematch type="pcre2">^added special-login</prematch>
-	<regex type="pcre2">^added special-login .* by [^:]+:(\S+)@([0-9\.]+).*disabled=(yes|no).*port=([^\s]+).*user=([^\s\)]+)</regex>
-	<order>admin_user, srcaddr, disabled, special_port, target_user</order>
+    <prematch type="pcre2">^new script added by</prematch>
+    <regex type="pcre2">^new script added by\s+(.+?):([^@:]+)@([0-9a-fA-F:.]+)\s+\(.*?/system script add.*?(?:name=("[^"]+"|\S+)).*?source="([\s\S]*?)"\)$</regex>
+    <order>method,admin_user,srcaddr,script_name,source_code</order>
 </decoder>
 
 <decoder name="MikroTik-Scheduler-Add-Web-Winbox">
