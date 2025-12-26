@@ -136,4 +136,10 @@
 	<order>admin_user, srcip</order>
 </decoder>
 
+<decoder name="MikroTik-Scheduler-Add-Web-Winbox">
+	<prematch type="pcre2">^new script scheduled by</prematch>
+	<regex type="pcre2">^new script scheduled by\s+(.+):([^@]+)@([^\s\)]+).*?/system scheduler add.*disabled=(yes|no).*name="?([^"\s]*)"?\s.*on-event="([^"]*)".*start-date=([0-9\-]+).*start-time=([0-9:]+)</regex>
+	<order>method, admin_user, srcaddr, disabled, name, script_code, start_date, start_time</order>
+</decoder>
+
 
