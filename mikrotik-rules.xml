@@ -30,7 +30,7 @@
 	</rule>
 
 	<rule id="101007" level="12">
-		<decoded_as>mikrotik-Failed-User-login</decoded_as>
+		<decoded_as>mikrotik-failed-user-login</decoded_as>
 		<description>login failure for user $(username) from $(srcaddr) via $(method)</description>
 	</rule>
 
@@ -40,7 +40,7 @@
 	</rule>
 
 	<rule id="101009" level="6">
-		<decoded_as>mikrotik-user-Logout</decoded_as>
+		<decoded_as>mikrotik-user-logout</decoded_as>
 		<description>user $(admin_user) logged out from $(srcaddr) via $(method)</description>
 	</rule>
 		
@@ -50,7 +50,7 @@
 	</rule>
 
 	<rule id="101011" level="14">
-		<decoded_as>mikrotik-User-Password-change</decoded_as>
+		<decoded_as>mikrotik-user-password-change</decoded_as>
 		<description>mikrotik user $(target_user) password changed by $(admin_user)</description>
 	</rule>
 
