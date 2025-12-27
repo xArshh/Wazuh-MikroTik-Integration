@@ -16,19 +16,19 @@
 	<order>method, admin_user, srcaddr, time_zone</order>
 </decoder>
 
-<decoder name="mikrotik-vpn-login">
-	<prematch type="pcre2">logged in,</prematch>
-	<regex type="pcre2">^(\S+)\s+logged in,\s+([0-9\.]+)\s+from\s+([0-9\.]+)$</regex>
-	<order>username, localip, srcaddr</order>
+<decoder name="mikrotik-ppp-login">
+        <prematch type="pcre2">logged in,</prematch>
+        <regex type="pcre2">^(.+?)\s+logged in,\s+([0-9a-fA-F:.]+)\s+from\s+([0-9a-fA-F:.]+)$</regex>
+        <order>username, localip, srcaddr</order>
 </decoder>
 
-<decoder name="mikrotik-vpn-auth-failed">
-	<prematch type="pcre2">authentication failed</prematch>
-	<regex type="pcre2">^(?:&lt;([0-9\.]+)&gt;:)?\s*user\s+(\S+)\s+authentication\s+failed</regex>
-	<order>srcaddr, username</order>
+<decoder name="mikrotik-ppp-auth-failed">
+        <prematch type="pcre2">authentication failed</prematch>
+        <regex type="pcre2">^(.*?):\s*user\s+(.+?)\s+authentication\s+failed$</regex>
+        <order>srcaddr, username</order>
 </decoder>
 
-<decoder name="mikrotik-vpn-logout">
+<decoder name="mikrotik-ppp-logout">
 	<prematch type="pcre2">logged out,</prematch>
 	<regex type="pcre2">^(\S+)\s+logged out,.*from\s+(\S+)$</regex>
 	<order>username, srcaddr</order>
