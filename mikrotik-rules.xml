@@ -80,30 +80,34 @@
 	</rule>
 
 	<rule id="101017" level="7">
-		<decoded_as>mikrotik-dns-change-web-winbox</decoded_as>
-		<description>mikrotik dns configuration changed by $(admin_user) via $(method) - remote-requests:$(allow_remote_requests) servers:$(dns_servers) doh-server:$(doh_server)</description>
-	</rule>
-
-	<rule id="101018" level="7">
-		<decoded_as>mikrotik-dns-change-ssh</decoded_as>
+		<decoded_as>mikrotik-dns-change-cli</decoded_as>
 		<description>mikrotik dns configuration changed by $(admin_user) via $(method) - remote-requests: $(allow_remote_requests),dns-servers: $(dns_servers),doh-server: $(doh_server)</description>
 	</rule>
 
-	<rule id="101019" level="13">
-		<decoded_as>mikrotik-script-added</decoded_as>
-		<description>mikrotik script added by $(admin_user) via $(method) from $(srcaddr) script name: $(script_name) source code: $(source_code)</description>
-	</rule>
-
-	<rule id="101020" level="12">
-		<decoded_as>mikrotik-scheduler-add-web-winbox</decoded_as>
-		<description>mikrotik scheduler script added by $(admin_user) from $(srcaddr) (name=$(name), disabled=$(disabled), start=$(start_date) $(start_time))</description>
+	<rule id="101018" level="7">
+		<decoded_as>mikrotik-dns-change-web-winbox</decoded_as>
+		<description>mikrotik dns configuration changed by $(admin_user) via $(method) - remote-requests:$(allow_remote_requests) servers:$(dns_servers) doh-server:$(doh_server)</description>
 	</rule>
 	
-	<rule id="101021" level="9">
-		<decoded_as>mikrotik-scheduler-add-ssh</decoded_as>
+	<rule id="101019" level="9">
+		<decoded_as>mikrotik-script-add-cli</decoded_as>
+		<description>mikrotik script added by $(admin_user) via $(method) from $(srcaddr) - script name:$(script_name) , source code: $(source_code)</description>
+	</rule>
+
+	<rule id="101020" level="13">
+		<decoded_as>mikrotik-script-add-web-winbox</decoded_as>
+		<description>mikrotik script added by $(admin_user) via $(method) from $(srcaddr) - script name: $(script_name) , source code: $(source_code)</description>
+	</rule>
+
+	<rule id="101021" level="12">
+		<decoded_as>mikrotik-scheduler-add-cli</decoded_as>
 		<description>mikrotik scheduler '$(scheduler_name)' added by $(admin_user) via $(method) from $(srcaddr)(start-time=$(start_time), start-date=$(start_date))</description>
 	</rule>
 
+	<rule id="101022" level="12">
+		<decoded_as>mikrotik-scheduler-add-web-winbox</decoded_as>
+		<description>mikrotik scheduler script added by $(admin_user) from $(srcaddr) (name=$(name), disabled=$(disabled), start=$(start_date) $(start_time))</description>
+	</rule>
 
 </group>
 
