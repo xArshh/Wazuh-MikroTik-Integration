@@ -1,121 +1,127 @@
-<decoder name="MikroTik-Identity-Change">
+<decoder name="mikrotik-Identity-change">
 	<prematch type="pcre2">^system identity changed by</prematch>
 	<regex type="pcre2">^system identity changed by\s+(.+?):(\S+)@(\S+)\s+\(\/system identity set name="?([^"]+)"?\)$</regex>
 	<order>method, admin_user, srcaddr, new_identity</order>
 </decoder>
 
-<decoder name="MikroTik-Time-Change">
+<decoder name="mikrotik-time-change">
 	<prematch type="pcre2">^change time</prematch>
 	<regex type="pcre2">^change time\s+(.+?)\s+=>\s+(.+)$</regex>
 	<order>old_time, new_time</order>
 </decoder>
 
-<decoder name="MikroTik-TimeZone-Change">
+<decoder name="mikrotik-timezone-change">
 	<prematch type="pcre2">^system time zone settings changed by</prematch>
 	<regex type="pcre2">^system time zone settings changed by\s+(.+):(\S+)@(\S+).*time-zone-name=([^;\s\)]+)</regex>
 	<order>method, admin_user, srcaddr, time_zone</order>
 </decoder>
 
-<decoder name="MikroTik-VPN-Login">
+<decoder name="mikrotik-vpn-login">
 	<prematch type="pcre2">logged in,</prematch>
 	<regex type="pcre2">^(\S+)\s+logged in,\s+([0-9\.]+)\s+from\s+([0-9\.]+)$</regex>
 	<order>username, localip, srcaddr</order>
 </decoder>
 
-<decoder name="MikroTik-VPN-Auth-Failed">
+<decoder name="mikrotik-vpn-auth-failed">
 	<prematch type="pcre2">authentication failed</prematch>
 	<regex type="pcre2">^(?:&lt;([0-9\.]+)&gt;:)?\s*user\s+(\S+)\s+authentication\s+failed</regex>
 	<order>srcaddr, username</order>
 </decoder>
 
-<decoder name="MikroTik-VPN-Logout">
+<decoder name="mikrotik-vpn-logout">
 	<prematch type="pcre2">logged out,</prematch>
 	<regex type="pcre2">^(\S+)\s+logged out,.*from\s+(\S+)$</regex>
 	<order>username, srcaddr</order>
 </decoder>
 
-<decoder name="MikroTik-Failed-User-Login">
+<decoder name="mikrotik-failed-user-login">
 	<prematch type="pcre2">login failure</prematch>
 	<regex type="pcre2">login failure for user (\S+) from (\S+) via (\S+)</regex>
 	<order>username, srcaddr, method</order>
 </decoder>
 
-<decoder name="MikroTik-Successful-User-Login">
+<decoder name="mikrotik-successful-user-login">
 	<prematch type="pcre2">logged in from</prematch>
 	<regex type="pcre2">user (\S+) logged in from (\S+) via (\S+)</regex>
 	<order>admin_user, srcaddr, method</order>
 </decoder>
 
-<decoder name="MikroTik-User-Logout">
+<decoder name="mikrotik-user-logout">
 	<prematch type="pcre2">logged out from</prematch>
 	<regex type="pcre2">user (\S+) logged out from (\S+) via (\S+)</regex>
 	<order>admin_user, srcaddr, method</order>
 </decoder>
 
-<decoder name="MikroTik-User-Modify">
+<decoder name="mikrotik-user-modify">
 	<prematch type="pcre2">^user\s+\S+\s+(added|changed)\s+by</prematch>
 	<regex type="pcre2">^user\s+(\S+)\s+(added|changed)\s+by\s+(.+):(\S+)@([^/\s]+)(?:/action:\d+)?\s+.*group=([a-zA-Z]+)</regex>
 	<order>target_user, action, method, admin_user, srcaddr, group</order>
 </decoder>
 
-<decoder name="MikroTik-User-Password-Change">
+<decoder name="mikrotik-user-password-change">
 	<prematch type="pcre2">^user\s+\S+\s+password\s+changed</prematch>
 	<regex type="pcre2">^user\s+(\S+)\s+password\s+changed\s+by\s+(\S+)</regex>
 	<order>target_user, admin_user</order>
 </decoder>
 
-<decoder name="MikroTik-IPv4-Filter-Rule-Modify">
+<decoder name="mikrotik-ipv4-filter-rule-modify">
 	<prematch type="pcre2">^filter rule\s+(added|changed)\s+by</prematch>
 	<regex type="pcre2">^filter rule\s+(added|changed)\s+by\s+(.+):([^\s@]+)@([0-9\.]+).*?\(.*?(?:action=([a-zA-Z\-]+))?.*?(?:chain=([a-zA-Z]+))?</regex>
 	<order>event_action, method, admin_user, srcaddr, fw_action, chain</order>
 </decoder>
 
-<decoder name="MikroTik-IPv4-Filter-Rule-Removed">
+<decoder name="mikrotik-ipv4-filter-rule-removed">
 	<prematch type="pcre2">^filter rule\s+removed\s+by</prematch>
 	<regex type="pcre2">^filter rule\s+removed\s+by\s+(.+):([^\s@]+)@([0-9\.]+)</regex>
 	<order>method, admin_user, srcaddr</order>
 </decoder>
 
-<decoder name="MikroTik-IPv6-Filter-Rule-Modify">
+<decoder name="mikrotik-ipv6-filter-rule-modify">
 	<prematch type="pcre2">^filter6 rule\s+(added|changed)\s+by</prematch>
 	<regex type="pcre2">^filter6 rule\s+(added|changed)\s+by\s+(.+):([^\s@]+)@([0-9\.]+).*?\(.*?(?:action=([a-zA-Z\-]+))?.*?(?:chain=([a-zA-Z]+))?</regex>
 	<order>event_action, method, admin_user, srcaddr, fw_action, chain</order>
 </decoder>
 
-<decoder name="MikroTik-IPv6-Filter-Rule-Removed">
+<decoder name="mikrotik-ipv6-filter-rule-removed">
 	<prematch type="pcre2">^filter6 rule\s+removed\s+by</prematch>
 	<regex type="pcre2">^filter6 rule\s+removed\s+by\s+(.+):([^\s@]+)@([0-9\.]+)</regex>
 	<order>method, admin_user, srcaddr</order>
 </decoder>
 
-<decoder name="MikroTik-IP-Service-Change">
+<decoder name="mikrotik-ip-service-change">
 	<prematch type="pcre2">^ip service changed by</prematch>
 	<regex type="pcre2">^ip service changed by\s+(.+):([^\s@]+)@([0-9\.]+).*?\(/ip service set\s+(\S+)</regex>
 	<order>method, admin_user, srcaddr, changed_service</order>
 </decoder>
 
-<decoder name="MikroTik-DNS-Change-Web-Winbox">
+<decoder name="mikrotik-dns-change-web-winbox">
 	<prematch type="pcre2">^dns changed by\s+(?!ssh:)</prematch>
 	<regex type="pcre2">^dns changed by\s+(.+):([^@:]+)@([0-9a-fA-F:.]+)\s+\(.*?allow-remote-requests=(yes|no).*?servers=([^ )]+).*?use-doh-server=([^ )]*).*?\)$</regex>
 	<order>method, admin_user, srcaddr, allow_remote_requests, dns_servers, doh_server</order>
 </decoder>
 
-<decoder name="MikroTik-DNS-Change-ssh">
+<decoder name="mikrotik-dns-change-ssh">
 	<prematch type="pcre2">^dns changed by\s+ssh:</prematch>
 	<regex type="pcre2">^dns changed by\s+(ssh):([^@:]+)@([0-9a-fA-F:.]+)\s+\((?:.*?allow-remote-requests=(yes|no))?(?:.*?servers=([^ )]+))?(?:.*?use-doh-server=([^ )]+))?.*?\)$</regex>
 	<order>method,admin_user,srcaddr,allow_remote_requests,dns_servers,doh_server</order>
 </decoder>
 
-<decoder name="MikroTik-Script-Added">
+<decoder name="mikrotik-script-added">
     <prematch type="pcre2">^new script added by</prematch>
     <regex type="pcre2">^new script added by\s+(.+?):([^@:]+)@([0-9a-fA-F:.]+)\s+\(.*?/system script add.*?(?:name=("[^"]+"|\S+)).*?source="([\s\S]*?)"\)$</regex>
     <order>method,admin_user,srcaddr,script_name,source_code</order>
 </decoder>
 
-<decoder name="MikroTik-Scheduler-Add-Web-Winbox">
+<decoder name="mikrotik-Scheduler-add-web-winbox">
 	<prematch type="pcre2">^new script scheduled by</prematch>
 	<regex type="pcre2">^new script scheduled by\s+(.+):([^@]+)@([^\s\)]+).*?/system scheduler add.*disabled=(yes|no).*name="?([^"\s]*)"?\s.*on-event="([^"]*)".*start-date=([0-9\-]+).*start-time=([0-9:]+)</regex>
 	<order>method, admin_user, srcaddr, disabled, name, script_code, start_date, start_time</order>
+</decoder>
+
+<decoder name="mikrotik-Scheduler-add-ssh">
+  <prematch type="pcre2">^new script scheduled by\s+ssh:</prematch>
+  <regex type="pcre2">^new script scheduled by\s+(ssh):([^@]+)@([^\s]+)\s+\(.*?/system scheduler add.*?name=(?:"([^"]+)"|([^\s]+)).*?on-event="([^"]+)"(?:.*?start-time=([^\s")]+))?(?:.*?start-date=([^\s")]+))?</regex>
+  <order>method, admin_user, srcaddr, scheduler_name, on_event, start_time, start_date</order>
 </decoder>
 
 
