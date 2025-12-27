@@ -1,104 +1,109 @@
 <group name="mikrotik">
 	<rule id="101001" level="14">
-		<decoded_as>MikroTik-Identity-Change</decoded_as>
-		<description>MikroTik system identity changed by $(admin_user) via $(method) from $(srcaddr) to $(new_identity)</description>
+		<decoded_as>mikrotik-identity-change</decoded_as>
+		<description>mikrotik system identity changed by $(admin_user) via $(method) from $(srcaddr) to $(new_identity)</description>
 	</rule>
 
 	<rule id="101002" level="12">
-		<decoded_as>MikroTik-Time-Change</decoded_as>
-		<description>MikroTik system time changed from $(old_time) to $(new_time)</description>
+		<decoded_as>mikrotik-time-change</decoded_as>
+		<description>mikrotik system time changed from $(old_time) to $(new_time)</description>
 	</rule>
 
 	<rule id="101003" level="8">
-		<decoded_as>MikroTik-TimeZone-Change</decoded_as>
-		<description>MikroTik time zone changed to $(time_zone) by $(admin_user) via $(method)</description>
+		<decoded_as>mikrotik-timezone-change</decoded_as>
+		<description>mikrotik time zone changed to $(time_zone) by $(admin_user) via $(method)</description>
 	</rule>
 
 	<rule id="101004" level="10">
-		<decoded_as>MikroTik-VPN-Login</decoded_as>
-		<description>VPN user $(username) logged in from $(srcaddr) with local IP $(localip)</description>
+		<decoded_as>mikrotik-vpn-login</decoded_as>
+		<description>vpn user $(username) logged in from $(srcaddr) with local ip $(localip)</description>
 	</rule>
 
 	<rule id="101005" level="10">
-		<decoded_as>MikroTik-VPN-Auth-Failed</decoded_as>
-		<description>Authentication failed</description>
+		<decoded_as>mikrotik-vpn-auth-failed</decoded_as>
+		<description>authentication failed</description>
 	</rule>
 
 	<rule id="101006" level="10">
-		<decoded_as>MikroTik-VPN-Logout</decoded_as>
-		<description>VPN user $(username) logged out from $(srcaddr)</description>
+		<decoded_as>mikrotik-vpn-logout</decoded_as>
+		<description>vpn user $(username) logged out from $(srcaddr)</description>
 	</rule>
 
 	<rule id="101007" level="12">
-		<decoded_as>MikroTik-Failed-User-Login</decoded_as>
-		<description>Login failure for user $(username) from $(srcaddr) via $(method)</description>
+		<decoded_as>mikrotik-Failed-User-login</decoded_as>
+		<description>login failure for user $(username) from $(srcaddr) via $(method)</description>
 	</rule>
 
 	<rule id="101008" level="8">
-		<decoded_as>MikroTik-Successful-User-Login</decoded_as>
-		<description>User $(admin_user) logged in from $(srcaddr) via $(method)</description>
+		<decoded_as>mikrotik-successful-user-login</decoded_as>
+		<description>user $(admin_user) logged in from $(srcaddr) via $(method)</description>
 	</rule>
 
 	<rule id="101009" level="6">
-		<decoded_as>MikroTik-User-Logout</decoded_as>
-		<description>User $(admin_user) logged out from $(srcaddr) via $(method)</description>
+		<decoded_as>mikrotik-user-Logout</decoded_as>
+		<description>user $(admin_user) logged out from $(srcaddr) via $(method)</description>
 	</rule>
 		
 	<rule id="101010" level="9">
-		<decoded_as>MikroTik-User-Modify</decoded_as>
-		<description>MikroTik user $(target_user) $(action) by $(admin_user) via $(method) from $(srcaddr) (group=$(group))</description>
+		<decoded_as>mikrotik-user-modify</decoded_as>
+		<description>mikrotik user $(target_user) $(action) by $(admin_user) via $(method) from $(srcaddr) (group=$(group))</description>
 	</rule>
 
 	<rule id="101011" level="14">
-		<decoded_as>MikroTik-User-Password-Change</decoded_as>
-		<description>MikroTik user $(target_user) password changed by $(admin_user)</description>
+		<decoded_as>mikrotik-User-Password-change</decoded_as>
+		<description>mikrotik user $(target_user) password changed by $(admin_user)</description>
 	</rule>
 
 	<rule id="101012" level="8">
-		<decoded_as>MikroTik-IPv4-Filter-Rule-Modify</decoded_as>
-		<description>MikroTik firewall rule $(event_action) | action=$(fw_action) | user=$(admin_user) | srcaddr=$(srcaddr)$(chain:+ | chain=$(chain))</description>
+		<decoded_as>mikrotik-ipv4-filter-rule-modify</decoded_as>
+		<description>mikrotik firewall rule $(event_action) | action=$(fw_action) | user=$(admin_user) | srcaddr=$(srcaddr)$(chain:+ | chain=$(chain))</description>
 	</rule>
 
 	<rule id="101013" level="13">
-		<decoded_as>MikroTik-IPv4-Filter-Rule-Removed</decoded_as>
-		<description>MikroTik firewall filter rule removed by $(admin_user) via $(method) from $(srcaddr)</description>
+		<decoded_as>mikrotik-ipv4-filter-rule-removed</decoded_as>
+		<description>mikrotik firewall filter rule removed by $(admin_user) via $(method) from $(srcaddr)</description>
 	</rule>
 
 	<rule id="101014" level="8">
-		<decoded_as>MikroTik-IPv6-Filter-Rule-Modify</decoded_as>
-		<description>MikroTik IPv6 firewall rule $(event_action) | action=$(fw_action) | user=$(admin_user) | srcaddr=$(srcaddr)$(chain:+ | chain=$(chain))</description>
+		<decoded_as>mikrotik-ipv6-filter-rule-modify</decoded_as>
+		<description>mikrotik ipv6 firewall rule $(event_action) | action=$(fw_action) | user=$(admin_user) | srcaddr=$(srcaddr)$(chain:+ | chain=$(chain))</description>
 	</rule>
 
 	<rule id="101015" level="13">
-		<decoded_as>MikroTik-IPv6-Filter-Rule-Removed</decoded_as>
-		<description>MikroTik IPv6 firewall filter rule removed by $(admin_user) via $(method) from $(srcaddr)</description>
+		<decoded_as>mikrotik-ipv6-filter-rule-removed</decoded_as>
+		<description>mikrotik ipv6 firewall filter rule removed by $(admin_user) via $(method) from $(srcaddr)</description>
 	</rule>
 
 	<rule id="101016" level="10">
-		<decoded_as>MikroTik-IP-Service-Change</decoded_as>
-		<description>MikroTik IP service $(changed_service) changed by $(admin_user) via $(method) from $(srcaddr)</description>
+		<decoded_as>mikrotik-ip-service-change</decoded_as>
+		<description>mikrotik ip service $(changed_service) changed by $(admin_user) via $(method) from $(srcaddr)</description>
 	</rule>
 
 	<rule id="101017" level="7">
-		<decoded_as>MikroTik-DNS-Change-Web-Winbox</decoded_as>
-		<description>MikroTik DNS configuration changed by $(admin_user) via $(method) - remote-requests:$(allow_remote_requests) servers:$(dns_servers) doh-server:$(doh_server)</description>
+		<decoded_as>mikrotik-dns-change-web-winbox</decoded_as>
+		<description>mikrotik dns configuration changed by $(admin_user) via $(method) - remote-requests:$(allow_remote_requests) servers:$(dns_servers) doh-server:$(doh_server)</description>
 	</rule>
 
 	<rule id="101018" level="7">
-		<decoded_as>MikroTik-DNS-Change-ssh</decoded_as>
-		<description>MikroTik DNS configuration changed by $(admin_user) via $(method) - remote-requests: $(allow_remote_requests),dns-servers: $(dns_servers),doh-server: $(doh_server)</description>
+		<decoded_as>mikrotik-dns-change-ssh</decoded_as>
+		<description>mikrotik dns configuration changed by $(admin_user) via $(method) - remote-requests: $(allow_remote_requests),dns-servers: $(dns_servers),doh-server: $(doh_server)</description>
 	</rule>
 
 	<rule id="101019" level="13">
-		<decoded_as>MikroTik-Script-Added</decoded_as>
-		<description>MikroTik script added by $(admin_user) via $(method) from $(srcaddr) script name: $(script_name) source code: $(source_code)</description>
+		<decoded_as>mikrotik-script-added</decoded_as>
+		<description>mikrotik script added by $(admin_user) via $(method) from $(srcaddr) script name: $(script_name) source code: $(source_code)</description>
 	</rule>
 
-	
 	<rule id="101020" level="12">
-		<decoded_as>MikroTik-Scheduler-Add-Web-Winbox</decoded_as>
-		<description>MikroTik scheduler script added by $(admin_user) from $(srcaddr) (name=$(name), disabled=$(disabled), start=$(start_date) $(start_time))</description>
+		<decoded_as>mikrotik-scheduler-add-web-winbox</decoded_as>
+		<description>mikrotik scheduler script added by $(admin_user) from $(srcaddr) (name=$(name), disabled=$(disabled), start=$(start_date) $(start_time))</description>
 	</rule>
+	
+	<rule id="101021" level="9">
+		<decoded_as>mikrotik-scheduler-add-ssh</decoded_as>
+		<description>mikrotik scheduler '$(scheduler_name)' added by $(admin_user) via $(method) from $(srcaddr)(start-time=$(start_time), start-date=$(start_date))</description>
+	</rule>
+
 
 </group>
 
