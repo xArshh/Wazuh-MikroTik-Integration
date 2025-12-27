@@ -1,7 +1,7 @@
 <decoder name="mikrotik-identity-change">
 	<prematch type="pcre2">^system identity changed by</prematch>
-	<regex type="pcre2">^system identity changed by\s+(.+?):(\S+)@(\S+)\s+\(\/system identity set name="?([^"]+)"?\)$</regex>
-	<order>method, admin_user, srcaddr, new_identity</order>
+	<regex type="pcre2">^system identity changed by\s+(.+):([^:@]+)@([^\s\)]+)\s+\(/system identity set name="?([^"]+)"?\)</regex>
+	<order>method,admin_user,srcaddr,new_identity</order>
 </decoder>
 
 <decoder name="mikrotik-time-change">
@@ -94,34 +94,38 @@
 	<order>method, admin_user, srcaddr, changed_service</order>
 </decoder>
 
-<decoder name="mikrotik-dns-change-web-winbox">
-	<prematch type="pcre2">^dns changed by\s+(?!ssh:)</prematch>
-	<regex type="pcre2">^dns changed by\s+(.+):([^@:]+)@([0-9a-fA-F:.]+)\s+\(.*?allow-remote-requests=(yes|no).*?servers=([^ )]+).*?use-doh-server=([^ )]*).*?\)$</regex>
-	<order>method, admin_user, srcaddr, allow_remote_requests, dns_servers, doh_server</order>
-</decoder>
-
-<decoder name="mikrotik-dns-change-ssh">
-	<prematch type="pcre2">^dns changed by\s+ssh:</prematch>
-	<regex type="pcre2">^dns changed by\s+(ssh):([^@:]+)@([0-9a-fA-F:.]+)\s+\((?:.*?allow-remote-requests=(yes|no))?(?:.*?servers=([^ )]+))?(?:.*?use-doh-server=([^ )]+))?.*?\)$</regex>
+<decoder name="mikrotik-dns-change-cli">
+	<prematch type="pcre2">^dns changed by\s+(ssh|local|api):</prematch>
+	<regex type="pcre2">^dns changed by\s+(ssh|local|api):([^@:]+)@([0-9a-fA-F:.]+)\s+\((?:.*?allow-remote-requests=(yes|no))?(?:.*?servers=([^ )]+))?(?:.*?use-doh-server=([^ )]+))?.*?\)$</regex>
 	<order>method,admin_user,srcaddr,allow_remote_requests,dns_servers,doh_server</order>
 </decoder>
 
-<decoder name="mikrotik-script-added">
-    <prematch type="pcre2">^new script added by</prematch>
-    <regex type="pcre2">^new script added by\s+(.+?):([^@:]+)@([0-9a-fA-F:.]+)\s+\(.*?/system script add.*?(?:name=("[^"]+"|\S+)).*?source="([\s\S]*?)"\)$</regex>
-    <order>method,admin_user,srcaddr,script_name,source_code</order>
+<decoder name="mikrotik-dns-change-web-winbox">
+	<prematch type="pcre2">^dns changed by\s+(?!(ssh|local|api):)</prematch>
+	<regex type="pcre2">^dns changed by\s+(.+?):([^@:]+)@([0-9a-fA-F:.]+)\s+\(.*?allow-remote-requests=(yes|no)(?:.*?servers=([^ )]*))?(?:.*?use-doh-server="?([^") ]*)"?).*?\)$</regex>
+	<order>method,admin_user,srcaddr,allow_remote_requests,dns_servers,doh_server</order>
+</decoder>
+
+<decoder name="mikrotik-script-add-cli">
+    <prematch type="pcre2">^new script added by\s+(ssh|local|api):</prematch>
+    <regex type="pcre2">^new script added by\s+(ssh|local|api):([^@]+)@([^\s\)]+)\s+\(.*?/system script add(?:.*?name=(?:"([^"]+)"|([^\s]+)))?(?:.*?source="([\s\S]*?)")?.*?\)$</regex>
+    <order>method,admin_user,srcaddr,script_name,script_name,source_code</order>
+</decoder>
+
+<decoder name="mikrotik-script-add-web-winbox">
+        <prematch type="pcre2">^new script added by</prematch>
+        <regex type="pcre2">^new script added by\s+(.+?):([^@:]+)@([0-9a-fA-F:.]+)\s+\(.*?/system script add.*?(?:name=("[^"]+"|\S+)).*?source="([\s\S]*?)"\)$</regex>
+        <order>method,admin_user,srcaddr,script_name,source_code</order>
+</decoder>
+
+<decoder name="mikrotik-scheduler-add-cli">
+  <prematch type="pcre2">^new script scheduled by\s+(ssh|local|api):</prematch>
+  <regex type="pcre2">^new script scheduled by\s+(ssh|local|api):([^@]+)@([^\s\)]+).*?/system scheduler add.*?name=(?:"([^"]+)"|([^\s]+)).*?on-event="([^"]*)"(?:.*?start-date=([0-9\-]+))?(?:.*?start-time=([0-9:]+))?</regex>
+  <order>method,admin_user,srcaddr,name,name,script_code,start_date,start_time</order>
 </decoder>
 
 <decoder name="mikrotik-scheduler-add-web-winbox">
-	<prematch type="pcre2">^new script scheduled by</prematch>
-	<regex type="pcre2">^new script scheduled by\s+(.+):([^@]+)@([^\s\)]+).*?/system scheduler add.*disabled=(yes|no).*name="?([^"\s]*)"?\s.*on-event="([^"]*)".*start-date=([0-9\-]+).*start-time=([0-9:]+)</regex>
-	<order>method, admin_user, srcaddr, disabled, name, script_code, start_date, start_time</order>
+  <prematch type="pcre2">^new script scheduled by\s+(?!ssh:|local:|api:)</prematch>
+  <regex type="pcre2">^new script scheduled by\s+(.+?):([^@]+)@([^\s\)]+).*?/system scheduler add.*?disabled=(yes|no).*?name=(?:"([^"]+)"|([^\s]+)).*?on-event="([^"]*)".*?start-date=([0-9\-]+).*?start-time=([0-9:]+)</regex>
+  <order>method,admin_user,srcaddr,disabled,name,name,script_code,start_date,start_time</order>
 </decoder>
-
-<decoder name="mikrotik-scheduler-add-ssh">
-  <prematch type="pcre2">^new script scheduled by\s+ssh:</prematch>
-  <regex type="pcre2">^new script scheduled by\s+(ssh):([^@]+)@([^\s]+)\s+\(.*?/system scheduler add.*?name=(?:"([^"]+)"|([^\s]+)).*?on-event="([^"]+)"(?:.*?start-time=([^\s")]+))?(?:.*?start-date=([^\s")]+))?</regex>
-  <order>method, admin_user, srcaddr, scheduler_name, on_event, start_time, start_date</order>
-</decoder>
-
-
