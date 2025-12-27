@@ -15,18 +15,18 @@
 	</rule>
 
 	<rule id="101004" level="10">
-		<decoded_as>mikrotik-vpn-login</decoded_as>
-		<description>vpn user $(username) logged in from $(srcaddr) with local ip $(localip)</description>
+		<decoded_as>mikrotik-ppp-login</decoded_as>
+		<description>ppp user $(username) logged in from $(srcaddr) with local ip $(localip)</description>
 	</rule>
 
 	<rule id="101005" level="10">
-		<decoded_as>mikrotik-vpn-auth-failed</decoded_as>
-		<description>authentication failed</description>
+		<decoded_as>mikrotik-ppp-auth-failed</decoded_as>
+		<description>ppp authentication failed - username:$(username)</description>
 	</rule>
 
 	<rule id="101006" level="10">
-		<decoded_as>mikrotik-vpn-logout</decoded_as>
-		<description>vpn user $(username) logged out from $(srcaddr)</description>
+		<decoded_as>mikrotik-ppp-logout</decoded_as>
+		<description>ppp user $(username) logged out from $(srcaddr)</description>
 	</rule>
 
 	<rule id="101007" level="12">
