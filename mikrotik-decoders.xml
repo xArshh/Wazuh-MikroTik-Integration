@@ -1,4 +1,4 @@
-<decoder name="mikrotik-Identity-change">
+<decoder name="mikrotik-identity-change">
 	<prematch type="pcre2">^system identity changed by</prematch>
 	<regex type="pcre2">^system identity changed by\s+(.+?):(\S+)@(\S+)\s+\(\/system identity set name="?([^"]+)"?\)$</regex>
 	<order>method, admin_user, srcaddr, new_identity</order>
@@ -112,13 +112,13 @@
     <order>method,admin_user,srcaddr,script_name,source_code</order>
 </decoder>
 
-<decoder name="mikrotik-Scheduler-add-web-winbox">
+<decoder name="mikrotik-scheduler-add-web-winbox">
 	<prematch type="pcre2">^new script scheduled by</prematch>
 	<regex type="pcre2">^new script scheduled by\s+(.+):([^@]+)@([^\s\)]+).*?/system scheduler add.*disabled=(yes|no).*name="?([^"\s]*)"?\s.*on-event="([^"]*)".*start-date=([0-9\-]+).*start-time=([0-9:]+)</regex>
 	<order>method, admin_user, srcaddr, disabled, name, script_code, start_date, start_time</order>
 </decoder>
 
-<decoder name="mikrotik-Scheduler-add-ssh">
+<decoder name="mikrotik-scheduler-add-ssh">
   <prematch type="pcre2">^new script scheduled by\s+ssh:</prematch>
   <regex type="pcre2">^new script scheduled by\s+(ssh):([^@]+)@([^\s]+)\s+\(.*?/system scheduler add.*?name=(?:"([^"]+)"|([^\s]+)).*?on-event="([^"]+)"(?:.*?start-time=([^\s")]+))?(?:.*?start-date=([^\s")]+))?</regex>
   <order>method, admin_user, srcaddr, scheduler_name, on_event, start_time, start_date</order>
