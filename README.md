@@ -5,6 +5,7 @@ The goal of this project is to give Wazuh clear visibility into critical MikroTi
 ### Tested On
 -  MikroTik RouterOS: 7.20.2
 -  Wazuh: 4.12 & 4.14
+-  Log Sources: Web | Winbox | SSH | API
 
 **The following MikroTik events are currently covered by decoders in this repository:**
 
@@ -13,14 +14,15 @@ The goal of this project is to give Wazuh clear visibility into critical MikroTi
 - Failed login attempts
 - User logout events
 - VPN login, logout, and authentication failures
+- VPN user add (ppp secret)
 - User password changes
 - User add/change operations
-- Mikrotik special-login events
+- PPP secret add
 
 ###  System & Configuration Changes
 - System identity changes
 - System time changes
-- System Timezone changes
+- System timezone changes
 - IP service configuration changes
 - DNS configuration changes
 
@@ -32,7 +34,7 @@ The goal of this project is to give Wazuh clear visibility into critical MikroTi
 
 ###  Script Activity
 - Script creation
-- Script removal
+- Scheduled script creation
 
 
 ## Setup Instructions
