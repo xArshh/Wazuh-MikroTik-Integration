@@ -109,6 +109,11 @@
 		<description>mikrotik scheduler script added by $(admin_user) from $(srcaddr) (name=$(name), disabled=$(disabled), start=$(start_date) $(start_time))</description>
 	</rule>
 
+	<rule id="101023" level="10">
+		<decoded_as>mikrotik-ppp-secret-add</decoded_as>
+		<description>mikrotik ppp secret added by $(admin_user) via $(method) from $(srcaddr) (ppp_user=$(ppp_user))</description>
+	</rule>
+
 </group>
 
 
