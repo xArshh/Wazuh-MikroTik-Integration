@@ -18,7 +18,7 @@
 
 <decoder name="mikrotik-ppp-login">
         <prematch type="pcre2">logged in,</prematch>
-        <regex type="pcre2">^(.+?)\s+logged in,\s+([0-9a-fA-F:.]+)\s+from\s+([0-9a-fA-F:.]+)$</regex>
+        <regex type="pcre2">^(.*?)\s+logged in,\s+([0-9a-fA-F:.]+)\s+from\s+([0-9a-fA-F:.]+)$</regex>
         <order>username, localip, srcaddr</order>
 </decoder>
 
@@ -29,9 +29,9 @@
 </decoder>
 
 <decoder name="mikrotik-ppp-logout">
-	<prematch type="pcre2">logged out,</prematch>
-	<regex type="pcre2">^(\S+)\s+logged out,.*from\s+(\S+)$</regex>
-	<order>username, srcaddr</order>
+  <prematch type="pcre2">logged out,</prematch>
+  <regex type="pcre2">^(.*?)\s+logged out,.*from\s*(.*)$</regex>
+  <order>username, srcaddr</order>
 </decoder>
 
 <decoder name="mikrotik-failed-user-login">
@@ -128,4 +128,10 @@
   <prematch type="pcre2">^new script scheduled by\s+(?!ssh:|local:|api:)</prematch>
   <regex type="pcre2">^new script scheduled by\s+(.+?):([^@]+)@([^\s\)]+).*?/system scheduler add.*?disabled=(yes|no).*?name=(?:"([^"]+)"|([^\s]+)).*?on-event="([^"]*)".*?start-date=([0-9\-]+).*?start-time=([0-9:]+)</regex>
   <order>method,admin_user,srcaddr,disabled,name,name,script_code,start_date,start_time</order>
+</decoder>
+
+<decoder name="mikrotik-ppp-secret-add">
+        <prematch type="pcre2">^ppp secret\s+</prematch>
+        <regex type="pcre2">^ppp secret (.*?) added by\s+([^:]+(?::[^:]+)?):([^@]+)@([^\s]+)</regex>
+        <order>ppp_user, method, admin_user, srcaddr</order>
 </decoder>
