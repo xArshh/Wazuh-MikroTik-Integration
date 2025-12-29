@@ -33,7 +33,13 @@
 		<decoded_as>mikrotik-failed-user-login</decoded_as>
 		<description>login failure for user $(username) from $(srcaddr) via $(method)</description>
 	</rule>
-
+	
+	<rule id="201007" level="14" frequency="10" timeframe="180">
+		<if_matched_sid>101007</if_matched_sid>
+		<description>Brute force detected: $(srcaddr) failed login 10 times in 3 minutes</description>
+		<mitre>T1110</mitre>
+	</rule>
+	
 	<rule id="101008" level="8">
 		<decoded_as>mikrotik-successful-user-login</decoded_as>
 		<description>user $(admin_user) logged in from $(srcaddr) via $(method)</description>
@@ -88,7 +94,7 @@
 		<decoded_as>mikrotik-dns-change-web-winbox</decoded_as>
 		<description>mikrotik dns configuration changed by $(admin_user) via $(method) - remote-requests:$(allow_remote_requests) servers:$(dns_servers) doh-server:$(doh_server)</description>
 	</rule>
-	
+
 	<rule id="101019" level="9">
 		<decoded_as>mikrotik-script-add-cli</decoded_as>
 		<description>mikrotik script added by $(admin_user) via $(method) from $(srcaddr) - script name:$(script_name) , source code: $(source_code)</description>
