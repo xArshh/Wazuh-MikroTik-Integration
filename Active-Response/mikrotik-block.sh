@@ -13,7 +13,7 @@ RULE_COMMENT="Drop-Bruteforce"
 RAW_OUTPUT=$($SSH_CMD "/ip firewall filter print count-only where comment=\"$RULE_COMMENT\"" 2>/dev/null)
 CHECK_FILTER=$(echo "$RAW_OUTPUT" | sed 's/\x1b\[[0-9;]*m//g' | tr -d '\r\n[:space:]')
 SSH_CMD="ssh \
- -i /var/ossec/.ssh/mt_rsa \
+ -i /var/ossec/.ssh/mt_ed25519 \
  -o BatchMode=yes \
  -o StrictHostKeyChecking=no \
  -o UserKnownHostsFile=/dev/null \
