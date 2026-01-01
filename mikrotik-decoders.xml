@@ -113,25 +113,25 @@
 </decoder>
 
 <decoder name="mikrotik-script-add-web-winbox">
-        <prematch type="pcre2">^new script added by</prematch>
-        <regex type="pcre2">^new script added by\s+(.+?):([^@:]+)@([0-9a-fA-F:.]+)\s+\(.*?/system script add.*?(?:name=("[^"]+"|\S+)).*?source="([\s\S]*?)"\)$</regex>
-        <order>method,admin_user,srcaddr,script_name,source_code</order>
+	<prematch type="pcre2">^new script added by</prematch>
+	<regex type="pcre2">^new script added by\s+(.+?):([^@:]+)@([0-9a-fA-F:.]+)\s+\(.*?/system script add.*?(?:name=("[^"]+"|\S+)).*?source="([\s\S]*?)"\)$</regex>
+	<order>method,admin_user,srcaddr,script_name,source_code</order>
 </decoder>
 
 <decoder name="mikrotik-scheduler-add-cli">
-  <prematch type="pcre2">^new script scheduled by\s+(ssh|local|api):</prematch>
-  <regex type="pcre2">^new script scheduled by\s+(ssh|local|api):([^@]+)@([^\s\)]+).*?/system scheduler add.*?name=(?:"([^"]+)"|([^\s]+)).*?on-event="([^"]*)"(?:.*?start-date=([0-9\-]+))?(?:.*?start-time=([0-9:]+))?</regex>
-  <order>method,admin_user,srcaddr,name,name,script_code,start_date,start_time</order>
+	<prematch type="pcre2">^new script scheduled by\s+(ssh|local|api):</prematch>
+	<regex type="pcre2">^new script scheduled by\s+(ssh|local|api):([^@]+)@([^\s\)]+).*?/system scheduler add.*?name=(?:"([^"]+)"|([^\s]+)).*?on-event="([^"]*)"(?:.*?start-date=([0-9\-]+))?(?:.*?start-time=([0-9:]+))?</regex>
+	<order>method,admin_user,srcaddr,name,name,script_code,start_date,start_time</order>
 </decoder>
 
 <decoder name="mikrotik-scheduler-add-web-winbox">
-  <prematch type="pcre2">^new script scheduled by\s+(?!ssh:|local:|api:)</prematch>
-  <regex type="pcre2">^new script scheduled by\s+(.+?):([^@]+)@([^\s\)]+).*?/system scheduler add.*?disabled=(yes|no).*?name=(?:"([^"]+)"|([^\s]+)).*?on-event="([^"]*)".*?start-date=([0-9\-]+).*?start-time=([0-9:]+)</regex>
-  <order>method,admin_user,srcaddr,disabled,name,name,script_code,start_date,start_time</order>
+	<prematch type="pcre2">^new script scheduled by\s+(?!ssh:|local:|api:)</prematch>
+	<regex type="pcre2">^new script scheduled by\s+(.+?):([^@]+)@([^\s\)]+).*?/system scheduler add.*?disabled=(yes|no).*?name=(?:"([^"]+)"|([^\s]+)).*?on-event="([^"]*)".*?start-date=([0-9\-]+).*?start-time=([0-9:]+)</regex>
+	<order>method,admin_user,srcaddr,disabled,name,name,script_code,start_date,start_time</order>
 </decoder>
 
 <decoder name="mikrotik-ppp-secret-add">
-        <prematch type="pcre2">^ppp secret\s+</prematch>
-        <regex type="pcre2">^ppp secret (.*?) added by\s+([^:]+(?::[^:]+)?):([^@]+)@([^\s]+)</regex>
-        <order>ppp_user, method, admin_user, srcaddr</order>
+	<prematch type="pcre2">^ppp secret\s+</prematch>
+	<regex type="pcre2">^ppp secret (.*?) added by\s+([^:]+(?::[^:]+)?):([^@]+)@([^\s]+)</regex>
+	<order>ppp_user, method, admin_user, srcaddr</order>
 </decoder>
