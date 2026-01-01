@@ -16,8 +16,8 @@ Create a group with only required access permissions & Create the user
 /user add name=wazuh group=wazuh-ar password=STRONG_PASSWORD address=WAZUH_MANAGER_IP
 ```
 ❗Note:
-•	Replace STRONG_PASSWORD with a strong password
-•	Replace WAZUH_MANAGER_IP with the IP address of your Wazuh manager to Restrict SSH access to the Wazuh manager IP only
+- Replace STRONG_PASSWORD with a strong password
+- Replace WAZUH_MANAGER_IP with the IP address of your Wazuh manager to Restrict SSH access to the Wazuh manager IP only
 
 ### Step 2 – Configure SSH Key-Based Authentication
 
