@@ -17,7 +17,6 @@ The goal of this project is to give Wazuh clear visibility into critical MikroTi
 - VPN user add (ppp secret)
 - User password changes
 - User add/change operations
-- PPP secret add
 
 ###  System & Configuration Changes
 - System identity changes
